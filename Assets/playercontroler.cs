@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class playercontroler : MonoBehaviour
 {
-    public float rotationSpeed = 2f;
+    public float rotationSpeed = 100f;
+    public float flySpeed = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +25,14 @@ public class playercontroler : MonoBehaviour
         //sterowanie prêdkoœci¹
         //stwórz nowy wektor przesuniêcia o wrtoœci 1 do przodu
 
-        Vector3 movement = Vector3.forward;
-
+        Vector3 movement = transform.forward;
+        //pomnó¿ przez czas od ostatniej klatki
         movement *= Time.deltaTime;
-
+        //pomnó¿ przez "wychylenie joysticka"
         movement *= Input.GetAxis("Vertical");
-
+        //pomnó¿ przez prêdkoœæ lotu
+        movement *= flySpeed;
+        //dodaj ruch do obiektu
         transform.position += movement;
 
         //obrót
@@ -39,8 +42,8 @@ public class playercontroler : MonoBehaviour
         rotation *= Time.deltaTime;
         //przemnó¿ przez klawiature 
         rotation *= Input.GetAxis("Horizontal");
-        //pomó¿ przez prêdkoœæ obiektu
-
+        //pomó¿ przez prêdkoœæ obrotu
+        rotation *= rotationSpeed;
         //dodaj obrót do obiektu
         // nie mo¿emy u¿yæ += poniewa¿ unity u¿ywa Quaternionów do zapisu rotacji
         transform.Rotate(rotation);
