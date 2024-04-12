@@ -73,6 +73,12 @@ public class playercontroler : MonoBehaviour
         TextMeshProUGUI shieldText =
             GameObject.Find("Canvas").transform.Find("ShieldCapacityText").GetComponent<TextMeshProUGUI>();
         shieldText.text = " Shield: " + (shieldCapacity*100).ToString() + "%";
+
+        if(levelManagerObject.GetComponent<LevelManager>().levelComplete)
+        {
+            GameObject.Find("Canvas").transform.Find("LevelCompleteScreen").gameObject.SetActive(true);
+
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -91,4 +97,12 @@ public class playercontroler : MonoBehaviour
             shieldCapacity -= 0.25f;
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("LevelExit"))
+        {
+            levelManagerObject.GetComponent<LevelManager>().levelComplete = true;
+        }
+    }
+
 }
