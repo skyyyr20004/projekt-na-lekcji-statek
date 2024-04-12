@@ -79,6 +79,11 @@ public class playercontroler : MonoBehaviour
             GameObject.Find("Canvas").transform.Find("LevelCompleteScreen").gameObject.SetActive(true);
 
         }
+        if (levelManagerObject.GetComponent<LevelManager>().levelFailed)
+        {
+            GameObject.Find("Canvas").transform.Find("GameOverScreen").gameObject.SetActive(true);
+
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -95,6 +100,10 @@ public class playercontroler : MonoBehaviour
             //popchnij asteroide
             asteroid.GetComponent<Rigidbody>().AddForce(shieldForce * 5, ForceMode.Impulse);
             shieldCapacity -= 0.25f;
+            if(shieldCapacity <= 0)
+            {
+                levelManagerObject.GetComponent<LevelManager>().levelComplete = true;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)

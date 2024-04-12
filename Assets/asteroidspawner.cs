@@ -14,6 +14,10 @@ public class asteroidspawner : MonoBehaviour
 
     //czas do ostatnio wygenreowanej asteroidy
     float timeSinceSpawn;
+
+    public float spawnDistance = 10;
+
+    public float safeDistance = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +32,8 @@ public class asteroidspawner : MonoBehaviour
     void Update()
     {
 
-        timeSinceSpawn += Time.deltaTime;
-
-        if (timeSinceSpawn >0.1) 
-        {
-            GameObject asteroid = SpawnAsteroid(staticAsteroid);
-            timeSinceSpawn = 0;
-        }
+         SpawnAsteroid(staticAsteroid);
+        
         AsteroidCountControll();
     }
 
@@ -45,13 +44,13 @@ public class asteroidspawner : MonoBehaviour
         Vector2 randomCirclePosition = Random.insideUnitCircle.normalized;
 
         // losowa pozycja w odległości 10 jednostek od środka świata
-        Vector3 randomPosition = new Vector3(randomCirclePosition.x, 0, randomCirclePosition.y) * 10;
+        Vector3 randomPosition = new Vector3(randomCirclePosition.x, 0, randomCirclePosition.y) * spawnDistance;
 
         randomPosition += player.position;
 
         //sprawdź czy miejsce jest wolne
 
-        if (!Physics.CheckSphere(randomPosition, 5)) 
+        if (!Physics.CheckSphere(randomPosition, safeDistance)) 
         {
             //nałóż pozycję gracza - teraz mamy pozycje 10 jednostek od gracza
             GameObject asteroid = Instantiate(staticAsteroid, randomPosition, Quaternion.identity);
