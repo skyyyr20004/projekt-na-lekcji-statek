@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class levelMenager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     Transform player;
     //odleg³osæ od koñca poziomu

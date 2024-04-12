@@ -58,21 +58,21 @@ public class playercontroler : MonoBehaviour
         //dodaj obrót do obiektu
         // nie mo¿emy u¿yæ += poniewa¿ unity u¿ywa Quaternionów do zapisu rotacji
         transform.Rotate(rotation);
-        Update();
+        UpdateUI();
     }
     private void UpdateUI()
     {
         //metoda wykonuje wszystko zwi¹zane z aktualizacj¹ interfejsu u¿ytkownika
 
         //wyciagnij z menadzera poziomu pozycje wyjscia
-        //Vector3 target = levelManagerObject.GetComponent<levelMenager>().exitPosition;
+            Vector3 target = levelManagerObject.GetComponent<LevelManager>().exitPosition;
         //obroc znacznik w strone wyjscia
-        //transform.Find("NavUI").Find("TargetMarker").LookAt(target);
+        transform.Find("NavUI").LookAt(target);
         //zmien ilosc procentwo widoczna w interfejsie
         //TODO: poprawiæ wyœwietlanie stanu os³on!
-        TextMeshPro shieldText =
-            GameObject.Find("Canvas").transform.Find("ShieldCapacityText").GetComponent<TextMeshPro>();
-        shieldText.text = " Shield: " + shieldCapacity.ToString() + "%";
+        TextMeshProUGUI shieldText =
+            GameObject.Find("Canvas").transform.Find("ShieldCapacityText").GetComponent<TextMeshProUGUI>();
+        shieldText.text = " Shield: " + (shieldCapacity*100).ToString() + "%";
     }
 
     private void OnCollisionEnter(Collision collision)
