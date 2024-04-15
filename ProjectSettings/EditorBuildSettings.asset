@@ -4,5 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/main menu.unity
+    guid: afc06f627466496489d6ac36768347f4
+  - enabled: 1
+    path: Assets/Scenes/STATEK.unity
+    guid: ab5cbd5dde0e9c1408a92faf3c938fb8
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

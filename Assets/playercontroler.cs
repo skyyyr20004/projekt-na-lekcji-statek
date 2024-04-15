@@ -102,7 +102,7 @@ public class playercontroler : MonoBehaviour
             shieldCapacity -= 0.25f;
             if(shieldCapacity <= 0)
             {
-                levelManagerObject.GetComponent<LevelManager>().levelComplete = true;
+                levelManagerObject.GetComponent<LevelManager>().OnFailure();
             }
         }
     }
